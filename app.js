@@ -1,6 +1,8 @@
 const BASE_URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
 const dropdowns =document.querySelectorAll(".dropdown select")
 const btn = document.querySelector("form button");
+const fromCurr = document.querySelector(".from select");
+const toCurr = document.querySelector(".to select");
 
 
 for(let select of dropdowns){
@@ -29,7 +31,20 @@ const updateFlag = (element)=>{
     img.src = newSrc;
 };
 
-btn.addEventListener("click",(evt)=>{
+btn.addEventListener("click",async (evt)=>{
     evt.preventDefault();
     let amount = document.querySelector("form input");
-})
+    let amtVal = amount.value;
+    if(amtVal === "" || amtVal<1){
+        amtVal =1;
+        amount.value = "1";
+
+    }
+    // console.log(fromCurr.value,toCurr.value)
+    const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
+    let response = await fetch(URL);
+    let data = await response.json();
+    let rate  = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
+    console.log(rate);
+});
+

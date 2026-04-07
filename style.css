@@ -42,10 +42,18 @@ form input{
     margin-top: 2rem;
 
 }
- i{
+#swap{
+    background-color: #fff;
+    color: black;
+    margin: 5px;
+    
+}
+#swap i{
     font-size: 1.5rem;
     margin-top: 1rem;
+    
 }
+
 .select-container img{
     max-width: 2rem;
 }
